@@ -1,4 +1,4 @@
-<!--index.wxml-->
+<!--welcome.wxml-->
 <view class="container">
   <view  bindtap="bindViewTap" class="userinfo">
     <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>

@@ -1,9 +1,9 @@
-//index.js
+//welcome.js
 //获取应用实例
 var app = getApp()
 Page({
   data: {
-    motto: 'Hello World',
+    motto: '开启小程序之旅',
     userInfo: {}
   },
   //事件处理函数
