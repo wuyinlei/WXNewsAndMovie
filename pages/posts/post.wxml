@@ -1,0 +1,46 @@
+<view>
+  <swiper indicator-dots="true" autoplay="true" interval="5000">
+    <swiper-item>
+      <image src="/images/post/wx.png"></image>
+    </swiper-item>
+    <swiper-item>
+      <image src="/images/post/vr.png"></image>
+    </swiper-item>
+    <swiper-item>
+      <image src="/images/post/iqiyi.png"></image>
+    </swiper-item>
+  </swiper>
+
+
+   <view class="post-container">
+    <view class="post-author-date">
+      <image src="/images/avatar/1.png" class="post-author"></image>
+      <text class="post-date">Nov 25 2016 1</text>
+    </view>
+    <text class="post-title">正是花好月圆夜</text>
+    <image src="/images/post/wx.png" class="post-image"></image>
+    <text class="post-content">基于微信小程序轻快的特点，我们拟定了小程序界面设计指南和建议。 设计指南建立在充分尊重用户知情权与操作权的基础之上。旨在微信生态体系内，建立友好、高效、一致的用户体验，同时最大程度适应和支持不同需求，实现用户与小程序服务方的共赢。</text>
+    <view class="post-like">
+      <image src="../../images/icon/chat.png" class="post-like-image"></image>
+      <text class="post-like-font">234</text>
+      <image src="../../images/icon/view.png" class="post-like-image"></image>
+      <text class="post-like-font">22</text>
+    </view>
+  </view>
+
+   <view class="post-container">
+    <view class="post-author-date">
+      <image src="/images/avatar/2.png" class="post-author"></image>
+      <text class="post-date">Nov 10 2016 1</text>
+    </view>
+    <text class="post-title">有爱好就行啊</text>
+    <image src="/images/post/iqiyi.png" class="post-image"></image>
+    <text class="post-content">为了避免用户在微信中使用小程序服务时，注意力被周围复杂环境干扰，小程序在设计时应该注意减少无关的设计元素对用户目标的干扰，礼貌地向用户展示程序提供的服务，友好地引导用户进行操作。</text>
+    <view class="post-like">
+      <image src="../../images/icon/chat.png" class="post-like-image"></image>
+      <text class="post-like-font">234</text>
+      <image src="../../images/icon/view.png" class="post-like-image"></image>
+      <text class="post-like-font">22</text>
+    </view>
+  </view>
+</view>
