@@ -10,25 +10,25 @@
       <image src="/images/post/iqiyi.png"></image>
     </swiper-item>
   </swiper>
-
-
-   <view class="post-container">
-    <view class="post-author-date">
-      <image src="/images/avatar/1.png" class="post-author"></image>
-      <text class="post-date">Nov 25 2016 1</text>
+  <block wx:for="{{posts_key}}" wx:for-item="item" wx:for-index="idx">  <!-这里的idx  代表索引  item默认就有  所以去掉wx:for-item也是可以的-->
+    <view class="post-container">
+      <view class="post-author-date">
+        <image src="{{item.author_img}}" class="post-author"></image>
+        <text class="post-date">{{item.date}} {{idx}}</text>
+      </view>
+      <text class="post-title">{{item.title}}</text>
+      <image src="{{item.post_img}}" class="post-image"></image>
+      <text class="post-content">{{item.content}}</text>
+      <view class="post-like">
+        <image src="{{item.view_img}}" class="post-like-image"></image>
+        <text class="post-like-font">{{item.view_num}}</text>
+        <image src="{{item.collect_img}}" class="post-like-image"></image>
+        <text class="post-like-font">{{item.collect_num}}</text>
+      </view>
     </view>
-    <text class="post-title">正是花好月圆夜</text>
-    <image src="/images/post/wx.png" class="post-image"></image>
-    <text class="post-content">基于微信小程序轻快的特点，我们拟定了小程序界面设计指南和建议。 设计指南建立在充分尊重用户知情权与操作权的基础之上。旨在微信生态体系内，建立友好、高效、一致的用户体验，同时最大程度适应和支持不同需求，实现用户与小程序服务方的共赢。</text>
-    <view class="post-like">
-      <image src="../../images/icon/chat.png" class="post-like-image"></image>
-      <text class="post-like-font">234</text>
-      <image src="../../images/icon/view.png" class="post-like-image"></image>
-      <text class="post-like-font">22</text>
-    </view>
-  </view>
+  </block>
 
-   <view class="post-container">
+  <!--<view class="post-container">
     <view class="post-author-date">
       <image src="/images/avatar/2.png" class="post-author"></image>
       <text class="post-date">Nov 10 2016 1</text>
@@ -42,5 +42,5 @@
       <image src="../../images/icon/view.png" class="post-like-image"></image>
       <text class="post-like-font">22</text>
     </view>
-  </view>
+  </view>-->
 </view>
