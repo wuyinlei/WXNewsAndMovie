@@ -1,35 +1,17 @@
+var postsData = require("../../../data/posts-data.js")
 Page({
   data:{
-    String1
+    
   },
   onLoad:function(options){
-    // 生命周期函数--监听页面加载
-    String2
+    var postId = options.id;
+
+    var postData = postsData.postList[postId];
+    //console.log(postData);
+    //console.log(postId);
+    this.setData(postData);
   },
-  onReady:function(){
-    // 生命周期函数--监听页面初次渲染完成
-    String3
-  },
-  onShow:function(){
-    // 生命周期函数--监听页面显示
-    String4
-  },
-  onHide:function(){
-    // 生命周期函数--监听页面隐藏
-    String5
-  },
-  onUnload:function(){
-    // 生命周期函数--监听页面卸载
-    String6
-  },
-  onPullDownRefresh: function() {
-    // 页面相关事件处理函数--监听用户下拉动作
-    String7
-  },
-  onReachBottom: function() {
-    // 页面上拉触底事件的处理函数
-    String8
-  },
+  
   onShareAppMessage: function() {
     // 用户点击右上角分享
     return {

@@ -52,7 +52,7 @@ Page({
         //这里的postid虽然在定义的时候是postId  但是在断点的时候显示的确实postid，所以要用postid去接受，要不然就是得不到数据  未定义   还有一般的应该是首字母小写，以后的单词拼接在一起  首字母大写(连字符 如果是一个单词  那么就是小写)
         var postId = event.currentTarget.dataset.postid;
         wx.navigateTo({
-          url: 'post-detail/post-detail'
+          url: "post-detail/post-detail?id=" + postId
         })
     }
    
