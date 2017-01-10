@@ -1,31 +1,34 @@
+<import src="post-item/post-item-template.wxml"/>
 <view>
   <swiper indicator-dots="true" autoplay="true" interval="5000">
     <swiper-item>
-      <image src="/images/post/wx.png"></image>
+      <image src="/images/post/bl.png"></image>
     </swiper-item>
     <swiper-item>
       <image src="/images/post/vr.png"></image>
     </swiper-item>
     <swiper-item>
-      <image src="/images/post/iqiyi.png"></image>
+      <image src="/images/post/crab.png"></image>
     </swiper-item>
   </swiper>
   <block wx:for="{{posts_key}}" wx:for-item="item" wx:for-index="idx">  <!-这里的idx  代表索引  item默认就有  所以去掉wx:for-item也是可以的-->
-    <view class="post-container">
+    <!--<view class="post-container">
       <view class="post-author-date">
-        <image src="{{item.author_img}}" class="post-author"></image>
-        <text class="post-date">{{item.date}} {{idx}}</text>
+        <image src="{{item.avatar}}" class="post-author"></image>
+        <text class="post-date">{{item.date}} </text>
       </view>
       <text class="post-title">{{item.title}}</text>
-      <image src="{{item.post_img}}" class="post-image"></image>
+      <image src="{{item.imgSrc}}" class="post-image"></image>
       <text class="post-content">{{item.content}}</text>
       <view class="post-like">
-        <image src="{{item.view_img}}" class="post-like-image"></image>
-        <text class="post-like-font">{{item.view_num}}</text>
-        <image src="{{item.collect_img}}" class="post-like-image"></image>
-        <text class="post-like-font">{{item.collect_num}}</text>
+        <image src="/images/icon/chat.png" class="post-like-image"></image>
+        <text class="post-like-font">{{item.reading}}</text>
+        <image src="/images/icon/view.png" class="post-like-image"></image>
+        <text class="post-like-font">{{item.collection}}</text>
       </view>
-    </view>
+    </view>-->
+
+    <template is = "postItem" data = "{{item}}"/>
   </block>
 
   <!--<view class="post-container">

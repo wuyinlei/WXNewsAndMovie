@@ -8,9 +8,22 @@ Page({
   },
   //事件处理函数
   bindViewTap: function() {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
+    wx.redirectTo({
+      url: '../posts/post'
+    });
+
+    // wx.redirectTo({
+    //   url: 'String',
+    //   success: function(res){
+    //     // success
+    //   },
+    //   fail: function() {
+    //     // fail
+    //   },
+    //   complete: function() {
+    //     // complete
+    //   }
+    // })
   },
   onLoad: function () {
     console.log('onLoad')
