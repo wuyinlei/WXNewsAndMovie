@@ -1,4 +1,4 @@
-<import src="post-item/post-item-template.wxml"/>
+<import src="post-item/post-item-template.wxml" />
 <view>
   <swiper indicator-dots="true" autoplay="true" interval="5000">
     <swiper-item>
@@ -11,7 +11,9 @@
       <image src="/images/post/crab.png"></image>
     </swiper-item>
   </swiper>
-  <block wx:for="{{posts_key}}" wx:for-item="item" wx:for-index="idx">  <!-这里的idx  代表索引  item默认就有  所以去掉wx:for-item也是可以的-->
+  <block wx:for="{{posts_key}}" wx:for-item="item" wx:for-index="idx">
+    <!-这里的idx  代表索引  item默认就有  所以去掉wx:for-item也是可以的-->
+
     <!--<view class="post-container">
       <view class="post-author-date">
         <image src="{{item.avatar}}" class="post-author"></image>
@@ -27,8 +29,9 @@
         <text class="post-like-font">{{item.collection}}</text>
       </view>
     </view>-->
-
-    <template is = "postItem" data = "{{item}}"/>
+    <view catchtap="onPostTap" data-postId ="{{item.postId}}">  <!--onPostTap注册到这个view上-->
+      <template is="postItem" data="{{item}}" />
+    </view>
   </block>
 
   <!--<view class="post-container">

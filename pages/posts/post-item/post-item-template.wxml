@@ -1,5 +1,5 @@
 <template name="postItem">
-  <view class="post-container">
+  <view class="post-container" >
     <view class="post-author-date">
       <image src="{{item.avatar}}" class="post-author"></image>
       <text class="post-date">{{item.date}} </text>
