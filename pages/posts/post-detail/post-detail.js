@@ -1,7 +1,7 @@
 var postsData = require("../../../data/posts-data.js")
 Page({
   data: {
-
+    isPlayingMusic: false,
   },
   onLoad: function (options) {
     var postId = options.id;
@@ -91,12 +91,12 @@ Page({
 
   /**
    * 自定义底部弹框列表
-   */  
+   */
   showActionSheet: function () {
     wx.showActionSheet({
       //按钮的文字数组，数组长度最大为6个
       itemList: ['A', 'B', 'C'],
-      itemColor:"#405f80",   //按钮的文字颜色，默认为"#000000"
+      itemColor: "#405f80",   //按钮的文字颜色，默认为"#000000"
       success: function (res) {  //接口调用成功的回调函数
         console.log(res.tapIndex)
         //res.tapIndex  数组元素的下表   从0开始
@@ -106,10 +106,49 @@ Page({
       fail: function (res) {  //接口调用失败的回调函数
         console.log(res.errMsg)
       },
-      complete:function(res){  //接口调用结束的回调函数（调用成功、失败都会执行）
+      complete: function (res) {  //接口调用结束的回调函数（调用成功、失败都会执行）
 
       }
     })
+  },
+
+
+  onMusicTap: function (event) {
+
+    var currentPostId = this.data.currentPostId;
+
+    var isPlayingMusic = this.data.isPlayingMusic;
+
+    var postData = postsData.postList[currentPostId];
+
+    if (isPlayingMusic) {  //当前正在播放  点击之后响应暂停按钮
+      wx.pauseBackgroundAudio();
+
+      this.setData({
+        isPlayingMusic: false,
+      })
+     // this.data.isPlayingMusic = false; //这样做是不能进行成功赋值的
+    } else {  //没有播放   点击之后要播放
+
+      wx.playBackgroundAudio({
+        dataUrl: postData.music.url,
+        title: postData.music.title,
+        coverImg: postData.coverImg,
+        // success: function(res){
+        //   // success
+        // },
+        // fail: function() {
+        //   // fail
+        // },
+        // complete: function() {
+        //   // complete
+        // }
+      })
+      this.setData({
+        isPlayingMusic: true,
+      })
+     // this.data.isPlayingMusic = true;
+    }
   },
 
   // onShareTap: function (event) {

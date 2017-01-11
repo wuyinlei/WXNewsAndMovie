@@ -1,9 +1,9 @@
 
 <!--先静后动，先样式在数据-->
 <view class="container">
-  <image class="head-image" src="{{headImgSrc}}"></image>
+  <image class="head-image" src="{{isPlayingMusic?music.coverImg:headImgSrc}}"></image>
 
-<image src="/images/music/music-start.png" class="audio"></image>
+<image bindtap = "onMusicTap" src="{{isPlayingMusic?'/images/music/music-stop.png':'/images/music/music-start.png'}}" class="audio"></image>
 
   <view class="author-date">
     <image class="avatar" src="{{avatar}}"></image>
