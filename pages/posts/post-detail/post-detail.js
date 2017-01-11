@@ -46,11 +46,70 @@ Page({
     var postCollected = postsCollected[this.data.currentPostId]; //获取到对应文章的id的缓存值值(有可能为空)
     postCollected = !postCollected;  //收藏变成未收藏   反之亦然
     postsCollected[this.data.currentPostId] = postCollected;
+    this.showToast(postsCollected, postCollected);
+
+  },
+
+  /**
+   * 自定义的toast
+   */
+  showToast: function (postsCollected, postCollected) {
     wx.setStorageSync('posts-collected', postsCollected);//更新文章是否收藏的缓存体
     this.setData({
       collected: postCollected //更新数据绑定变量  从而实现收藏图片的切换
     })
 
+    //给予用户提示   显示消息提示框
+    wx.showToast({
+      title: postCollected ? "收藏成功" : "取消成功",
+      duration: 1000,
+
+    })
+  },
+
+  /**
+   * 自定义的对话框
+   */
+  showModal: function (postsCollected, postCollected) {
+    //显示模态弹窗
+    wx.showModal({
+      title: '收藏',
+      content: postCollected ? '收藏该文章?' : "取消收藏该文章",
+      cancelColor: "#333",
+      confirmColor: "#405f80",
+      success: function (res) {
+        if (res.confirm) {
+          wx.setStorageSync('posts-collected', postsCollected);//更新文章是否收藏的缓存体
+          this.setData({
+            collected: postCollected //更新数据绑定变量  从而实现收藏图片的切换
+          })
+        }
+      }
+    })
+  },
+
+
+  /**
+   * 自定义底部弹框列表
+   */  
+  showActionSheet: function () {
+    wx.showActionSheet({
+      //按钮的文字数组，数组长度最大为6个
+      itemList: ['A', 'B', 'C'],
+      itemColor:"#405f80",   //按钮的文字颜色，默认为"#000000"
+      success: function (res) {  //接口调用成功的回调函数
+        console.log(res.tapIndex)
+        //res.tapIndex  数组元素的下表   从0开始
+        //res.errMsg  
+        //res.cancel  用户是否点击了取消按钮
+      },
+      fail: function (res) {  //接口调用失败的回调函数
+        console.log(res.errMsg)
+      },
+      complete:function(res){  //接口调用结束的回调函数（调用成功、失败都会执行）
+
+      }
+    })
   },
 
   // onShareTap: function (event) {
