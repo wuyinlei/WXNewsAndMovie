@@ -1,9 +1,20 @@
 var postsData = require("../../../data/posts-data.js")
+var app = getApp();
 Page({
   data: {
     isPlayingMusic: false,
   },
   onLoad: function (options) {
+    var globalData = app.globalData;
+    // console.log(globalData);
+
+    if(globalData.g_isPlayingMusic){  //全局变量如果为真   
+      //this.data.isPlayingMusic = true;
+        this.setData({
+        isPlayingMusic: true,
+      })
+    }
+
     var postId = options.id;
     this.data.currentPostId = postId;
     var postData = postsData.postList[postId];
@@ -34,6 +45,36 @@ Page({
       wx.setStorageSync('posts-collected', postsCollected);  //然后放入缓存  也就是更新
     }
     //wx.setStorageSync('key', "你好");  //同步设置缓存
+
+    this.setAudioMonitor();
+
+  },
+
+  /**
+   * 音乐播放控制
+   */
+  setAudioMonitor:function(){
+    var that = this;
+    //监听音乐播放。
+    wx.onBackgroundAudioPlay(function () {
+      // callback
+      that.setData({
+        isPlayingMusic: true,
+      })
+      //音乐播放    改变全局变量(是否处于播放状态)
+      app.globalData.g_isPlayingMusic = true;
+      // that.isPlayingMusic = true;
+    })
+
+    //监听音乐暂停
+    wx.onBackgroundAudioPause(function () {
+      // callback
+      that.setData({
+        isPlayingMusic: false,
+      })
+      //音乐暂停    改变全局变量(是否处于播放状态)
+       app.globalData.g_isPlayingMusic = false;
+    })
   },
 
   onCollectionTap: function (event) {
@@ -113,21 +154,24 @@ Page({
   },
 
 
+  /**
+   * 播放音乐的逻辑
+   */
   onMusicTap: function (event) {
 
-    var currentPostId = this.data.currentPostId;
+    var currentPostId = this.data.currentPostId;  //当前id
 
     var isPlayingMusic = this.data.isPlayingMusic;
 
-    var postData = postsData.postList[currentPostId];
+    var postData = postsData.postList[currentPostId];  //当前item点击进入的数据
 
     if (isPlayingMusic) {  //当前正在播放  点击之后响应暂停按钮
-      wx.pauseBackgroundAudio();
+      wx.pauseBackgroundAudio();  //暂停播放音乐
 
-      this.setData({
+      this.setData({  //用于通知更新ui
         isPlayingMusic: false,
       })
-     // this.data.isPlayingMusic = false; //这样做是不能进行成功赋值的
+      // this.data.isPlayingMusic = false; //这样做是不能进行成功赋值的
     } else {  //没有播放   点击之后要播放
 
       wx.playBackgroundAudio({
@@ -147,7 +191,7 @@ Page({
       this.setData({
         isPlayingMusic: true,
       })
-     // this.data.isPlayingMusic = true;
+      // this.data.isPlayingMusic = true;
     }
   },
 
