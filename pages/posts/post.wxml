@@ -11,8 +11,8 @@
       <image src="/images/post/crab.png"></image>
     </swiper-item>
   </swiper>
-  <block wx:for="{{posts_key}}" wx:for-item="item" wx:for-index="idx">
-    <!-这里的idx  代表索引  item默认就有  所以去掉wx:for-item也是可以的-->
+  <block wx:for="{{posts_key}}" wx:for-item="item" >
+    <!--这里的idx  代表索引  item默认就有  所以去掉wx:for-item也是可以的-->
 
     <!--<view class="post-container">
       <view class="post-author-date">
