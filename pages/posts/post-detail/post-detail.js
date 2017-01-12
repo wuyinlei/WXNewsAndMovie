@@ -8,14 +8,17 @@ Page({
     var globalData = app.globalData;
     // console.log(globalData);
 
-    if(globalData.g_isPlayingMusic){  //全局变量如果为真   
+    var postId = options.id;
+
+    if (globalData.g_isPlayingMusic
+      && globalData.g_currentMusicPostId === postId) {  //全局变量如果为真   并且当前的播放的id也是符合的的才能是播放  
       //this.data.isPlayingMusic = true;
-        this.setData({
+      this.setData({
         isPlayingMusic: true,
       })
     }
 
-    var postId = options.id;
+
     this.data.currentPostId = postId;
     var postData = postsData.postList[postId];
     //console.log(postData);
@@ -53,7 +56,7 @@ Page({
   /**
    * 音乐播放控制
    */
-  setAudioMonitor:function(){
+  setAudioMonitor: function () {
     var that = this;
     //监听音乐播放。
     wx.onBackgroundAudioPlay(function () {
@@ -63,6 +66,7 @@ Page({
       })
       //音乐播放    改变全局变量(是否处于播放状态)
       app.globalData.g_isPlayingMusic = true;
+      app.globalData.g_currentMusicPostId = that.data.currentPostId;
       // that.isPlayingMusic = true;
     })
 
@@ -73,7 +77,8 @@ Page({
         isPlayingMusic: false,
       })
       //音乐暂停    改变全局变量(是否处于播放状态)
-       app.globalData.g_isPlayingMusic = false;
+      app.globalData.g_isPlayingMusic = false;
+      app.globalData.g_currentMusicPostId = null;
     })
   },
 
