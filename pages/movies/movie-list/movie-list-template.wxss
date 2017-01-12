@@ -1,7 +1,8 @@
 @import "../movie/movie-template.wxss";
 
 .inner-container{
-  margin: 0 auto 20rpx;
+  
+  background-color: white;
 }
 
 .movie-list-container {
@@ -12,9 +13,9 @@
 
 .movie-head {
   padding: 30rpx 20rpx 22rpx;
-  display: flex;
+  /*display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-between;*/
 }
 
 .slogan {
@@ -22,7 +23,7 @@
 }
 
 .more {
-  /*float: right;*/
+  float: right;
 }
 
 .more-image {

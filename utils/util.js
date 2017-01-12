@@ -11,11 +11,25 @@ function formatTime(date) {
   return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
 }
 
+function convertToStarsArray(stars) {
+  var num = stars.toString().substring(0, 1);
+  var array = [];
+  for (var i = 1; i <= 5; i++) {
+    if (i <= num) {
+      array.push(1);
+    } else {
+      array.push(0);
+    }
+  }
+  return array;
+}
+
 function formatNumber(n) {
   n = n.toString()
   return n[1] ? n : '0' + n
 }
 
 module.exports = {
-  formatTime: formatTime
+ // formatTime: formatTime,
+  convertToStarsArray:convertToStarsArray
 }
