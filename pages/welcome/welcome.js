@@ -7,24 +7,19 @@ Page({
     userInfo: {}
   },
   //事件处理函数
-  bindViewTap: function() {
-    wx.redirectTo({
-      url: '../posts/post'
-    });
-
+  onTap: function(event) {
     // wx.redirectTo({
-    //   url: 'String',
-    //   success: function(res){
-    //     // success
-    //   },
-    //   fail: function() {
-    //     // fail
-    //   },
-    //   complete: function() {
-    //     // complete
-    //   }
-    // })
+    //   url:"../posts/post"
+    // });
+
+    //新版改版之后   如果是进入tab  标签页面(可以选择的页面的时候) 需要使用wx.switchTab  而不是wx.redirectTo 或者是wx.navigateTo方法来进入的了
+     wx.switchTab({
+            url: "../posts/post"
+        });
+        
   },
+
+  
   onLoad: function () {
     console.log('onLoad')
     var that = this
