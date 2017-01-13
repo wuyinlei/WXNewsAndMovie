@@ -2,10 +2,28 @@ var utils = require('../../utils/util.js');
 var app = getApp();
 Page({
   data: {
-    inTheaters:[],
-    comingSoon:[],
-    top250:[]
+    inTheaters: [],
+    comingSoon: [],
+    top250: []
   },
+
+  onMoreTap: function (event) {
+    var category = event.currentTarget.dataset.category;
+    wx.navigateTo({
+      url: 'more-movie/more-movie?category='+category,
+      success: function(res){
+        // success
+      },
+      fail: function() {
+        // fail
+      },
+      complete: function() {
+        // complete
+      }
+    })
+  },
+
+
   onLoad: function (options) {
 
     //正在热映
@@ -15,13 +33,13 @@ Page({
     //top250
     var top250Url = app.globalData.doubanBase + "/v2/movie/top250" + "?start=0&count=3";
 
-    this.getMovieListData(inTheaterUrl,"inTheaters","正在热映");
-     this.getMovieListData(comingSoonUrl,"comingSoon","即将上映");
-     this.getMovieListData(top250Url,"top250","豆瓣Top250");
+    this.getMovieListData(inTheaterUrl, "inTheaters", "正在热映");
+    this.getMovieListData(comingSoonUrl, "comingSoon", "即将上映");
+    this.getMovieListData(top250Url, "top250", "豆瓣Top250");
 
   },
 
-  getMovieListData: function (url,settedkey,categoryTitle) {
+  getMovieListData: function (url, settedkey, categoryTitle) {
     var that = this;
 
     wx.request({
@@ -33,7 +51,7 @@ Page({
       success: function (res) {
         // success
         console.log(res);
-       that.proccessDoubanData(res.data,settedkey,categoryTitle);
+        that.proccessDoubanData(res.data, settedkey, categoryTitle);
       },
       fail: function () {
         // fail
@@ -41,31 +59,31 @@ Page({
     })
   },
 
-  proccessDoubanData:function(movieDouban,settedkey,categoryTitle){
+  proccessDoubanData: function (movieDouban, settedkey, categoryTitle) {
     var movies = [];
-    for(var idx  in movieDouban.subjects){
+    for (var idx in movieDouban.subjects) {
       var subject = movieDouban.subjects[idx];
       var title = subject.title;
-      if(title.length > 6){
-        title = title.substring(0,6) + "...";
+      if (title.length > 6) {
+        title = title.substring(0, 6) + "...";
       }
 
       var temp = {
-         stars:utils.convertToStarsArray(subject.rating.stars),
-        title:title,
-        average:subject.rating.average,
-        coverageUrl:subject.images.large,
-        movieId:subject.id,
+        stars: utils.convertToStarsArray(subject.rating.stars),
+        title: title,
+        average: subject.rating.average,
+        coverageUrl: subject.images.large,
+        movieId: subject.id,
       }
       movies.push(temp);
     }
     var readyData = {};
-    readyData[settedkey]={
-        movies:movies,
-        categoryTitle:categoryTitle
+    readyData[settedkey] = {
+      movies: movies,
+      categoryTitle: categoryTitle
     }
     this.setData(readyData);
-  
+
   },
 
   onShareAppMessage: function () {

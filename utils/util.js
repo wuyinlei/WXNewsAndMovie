@@ -29,7 +29,28 @@ function formatNumber(n) {
   return n[1] ? n : '0' + n
 }
 
+ function http(url,callBack) {
+    var that = this;
+
+    wx.request({
+      url: url,
+      method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+      header: {
+        "Content-Type": "applicaption/xml"
+      }, // 设置请求的 header
+      success: function (res) {
+      callBack(res.data);
+    
+      },
+      fail: function (error) {
+        // fail
+        console.log(error);
+      }
+    })
+  }
+
 module.exports = {
  // formatTime: formatTime,
-  convertToStarsArray:convertToStarsArray
+  convertToStarsArray:convertToStarsArray,
+  http:http
 }
