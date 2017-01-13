@@ -8,4 +8,7 @@
 
 .grid-container{
     margin: 40rpx 0 40rpx 4rpx;
+
+    /**在这里如果要使用scroll-view的时候进行上拉加载更多的时候，需要指定一个这个界面的高度   这里是总高度减去title的高度*/
+    height: 1300rpx;
 }

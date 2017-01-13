@@ -3,8 +3,11 @@ var util = require('../../../utils/util.js');
 var app = getApp();
 Page({
   data: {
-    movies:{},
-    navigationTitle: null
+    movies: {},
+    navigationTitle: "",
+    requestUrl: "",
+    totalCount: 0,
+    isEmpty: true,
   },
   onLoad: function (options) {
     var category = options.category;
@@ -25,8 +28,9 @@ Page({
         dataUrl = app.globalData.doubanBase + "/v2/movie/top250";
         break;
     }
-
+    this.data.requestUrl = dataUrl; //保存值
     util.http(dataUrl, this.proccessDoubanData);
+
   },
 
   proccessDoubanData: function (data) {
@@ -48,10 +52,30 @@ Page({
       }
       movies.push(temp);
     }
-
+    var totalMovies = {};  //用于保存链接数组集合  在安卓中  我们请求更多的数据之后  可以直接add
+    //Data(data);数据 然后就可以在数组中添加更新的数据了了  但是这个地方却是达不到的的，所以我们在这里定义一个总的数据  用来接收或者拼接所有数据
+    //当然这个地方要设置一个标志  也就是 我们是否追加的数据数据  还是怎么的的 如果是追加的数据   就
+    if (!this.data.isEmpty) {
+      totalMovies = this.data.movies.concat(movies); //连接数组
+    } else {
+      totalMovies = movies;  //如果是首次添加数据   这个地方就可以直接赋值
+      this.data.isEmpty = false;  //设置标志位为false
+    }
     this.setData({
-      movies: movies
+      movies: totalMovies
     });
+     this.data.totalCount += 20;  //在这里 也就是数据绑定成功之后  这个时候才能记录数据
+     wx.hideNavigationBarLoading();
+  },
+
+  /**
+   * 滑动到底部触发加载更多的逻辑方法
+   */
+  onScrollToLower: function (event) {
+    // console.log("加载更多");
+    var nextUrl = this.data.requestUrl + "?start=" + this.data.totalCount + "&count=20";
+    util.http(nextUrl, this.proccessDoubanData);
+    wx.showNavigationBarLoading();
   },
 
   //在这个生命周期方法中设置title可以

@@ -9,6 +9,10 @@
 ![](http://ww3.sinaimg.cn/mw690/006jcGvzgw1fbljh3odwlj30kq0xgtei.jpg)
 ####内容
 ![](http://ww4.sinaimg.cn/mw690/006jcGvzgw1fbljhd5xrqj30ks0ykdlb.jpg)
+####电影界面
+![](http://ww1.sinaimg.cn/mw690/006jcGvzgw1fbozex0b8nj30km0ysdl9.jpg)
+####更多电影界面
+![](http://ww1.sinaimg.cn/mw690/006jcGvzgw1fbozfr8ge0j30kw110gt2.jpg)
 
 
 
