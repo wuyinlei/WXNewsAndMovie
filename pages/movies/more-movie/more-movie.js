@@ -33,6 +33,17 @@ Page({
 
   },
 
+  onPullDownRefresh: function (event) {
+    // console.log("加载更多");
+    var nextUrl = this.data.requestUrl + "?start=0&count=20";
+    this.data.movies = {};  //把数据置空  要不然就会有很多数据
+    this.data.isEmpty=true; //把标志置为 true  
+    util.http(nextUrl, this.proccessDoubanData);
+    wx.showNavigationBarLoading();
+  },
+
+  
+
   proccessDoubanData: function (data) {
     // console.log(data);
     var movies = [];
@@ -64,19 +75,27 @@ Page({
     this.setData({
       movies: totalMovies
     });
-     this.data.totalCount += 20;  //在这里 也就是数据绑定成功之后  这个时候才能记录数据
-     wx.hideNavigationBarLoading();
+    this.data.totalCount += 20;  //在这里 也就是数据绑定成功之后  这个时候才能记录数据
+    wx.hideNavigationBarLoading();
   },
 
   /**
    * 滑动到底部触发加载更多的逻辑方法
    */
-  onScrollToLower: function (event) {
+  onReachBottom: function (event) {
     // console.log("加载更多");
     var nextUrl = this.data.requestUrl + "?start=" + this.data.totalCount + "&count=20";
     util.http(nextUrl, this.proccessDoubanData);
     wx.showNavigationBarLoading();
   },
+
+  //   onReachBottom: function (event) {
+  //   var nextUrl = this.data.requestUrl +
+  //     "?start=" + this.data.totalCount + "&count=20";
+  //   util.http(nextUrl, this.processDoubanData)
+  //   wx.showNavigationBarLoading()
+  // },
+
 
   //在这个生命周期方法中设置title可以
   onReady: function (event) {
