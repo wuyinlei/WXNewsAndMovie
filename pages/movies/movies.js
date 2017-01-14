@@ -6,7 +6,8 @@ Page({
         comingSoon: [],
         top250: [],
         containerShow: true,
-        searchPanelShow: false
+        searchPanelShow: false,
+        searchResult: []
     },
 
     onMoreTap: function (event) {
@@ -88,6 +89,9 @@ Page({
 
     },
 
+    /**
+     * 搜索框获取焦点的时候出发的函数逻辑
+     */
     onBindFocus: function (event) {
         //   console.log("获取焦点")
         // this.data.containerShow = false;
@@ -98,15 +102,23 @@ Page({
         })
     },
 
+    /**
+     * 搜索界面点击x取消搜索的时候响应的函数
+     */
     onCancelImageTap: function (event) {
         this.setData({
             containerShow: true,
-            searchPanelShow: false
+            searchPanelShow: false,
+            searchResult: []
         })
     },
 
-    onBindConfirm: function () {
-
+    onBindConfirm: function (event) {
+        // console.log("我倒这了")
+        var text = event.detail.value;
+        console.log(text);
+        var searchUrl = app.globalData.doubanBase + "/v2/movie/search?q=" + text;
+        this.getMovieListData(searchUrl,"searchResult","");
     },
 
     onShareAppMessage: function () {

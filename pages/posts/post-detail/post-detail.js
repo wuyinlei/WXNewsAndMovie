@@ -80,6 +80,17 @@ Page({
       app.globalData.g_isPlayingMusic = false;
       app.globalData.g_currentMusicPostId = null;
     })
+
+     //监听音乐暂停
+    wx.onBackgroundAudioStop(function () {
+      // callback
+      that.setData({
+        isPlayingMusic: false,
+      })
+      //音乐暂停    改变全局变量(是否处于播放状态)
+      app.globalData.g_isPlayingMusic = false;
+      app.globalData.g_currentMusicPostId = null;
+    })
   },
 
   onCollectionTap: function (event) {
