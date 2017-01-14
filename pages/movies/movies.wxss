@@ -4,6 +4,42 @@
   background-color: "#f2f2f2";
 }
 
-.movies-template{
-    margin-bottom: 20rpx;
-} 
+.movies-template {
+  margin-bottom: 20rpx;
+}
+
+.search {
+  background-color: azure;
+  height: 80rpx;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.search-image {
+  margin: auto 0 auto 20rpx;
+}
+
+.placeholder {
+  font-size: 24rpx;
+  color: #d1f1f1;
+  margin-left: 20rpx;
+}
+
+.search input {
+  height: 100%;
+  width: 600rpx;
+  margin-left: 20rpx;
+  font-size: 28rpx;
+}
+
+.search-panel{
+  position: absolute;
+  margin-top: 80rpx;
+}
+
+.xx-img{
+  height: 30rpx;
+  width: 30rpx;
+  margin: auto 0 auto 10rpx;
+}
