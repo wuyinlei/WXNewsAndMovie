@@ -29,28 +29,51 @@ function formatNumber(n) {
   return n[1] ? n : '0' + n
 }
 
- function http(url,callBack) {
-    var that = this;
+function http(url, callBack) {
+  var that = this;
 
-    wx.request({
-      url: url,
-      method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
-      header: {
-        "Content-Type": "applicaption/xml"
-      }, // 设置请求的 header
-      success: function (res) {
+  wx.request({
+    url: url,
+    method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+    header: {
+      "Content-Type": "applicaption/xml"
+    }, // 设置请求的 header
+    success: function (res) {
       callBack(res.data);
-    
-      },
-      fail: function (error) {
-        // fail
-        console.log(error);
-      }
-    })
+
+    },
+    fail: function (error) {
+      // fail
+      console.log(error);
+    }
+  })
+}
+
+function convertToCastString(casts) {
+  var castsJoin = "";
+  for (var idx in casts) {
+    castsJoin = castsJoin + casts[idx].name + " / ";
   }
 
+  return castsJoin.substring(0, castsJoin.length - 2);
+}
+
+function convertToCastsInfo(casts){
+  var  castArray = [];
+  for(var idx in casts){
+    var cast= {
+      img:casts[idx].avatars? casts[idx].avatars.large:"",
+      name:casts[idx].name
+    }
+    castArray.push(cast);
+  }
+  return castArray;
+}
+
 module.exports = {
- // formatTime: formatTime,
-  convertToStarsArray:convertToStarsArray,
-  http:http
+  // formatTime: formatTime,
+  convertToStarsArray: convertToStarsArray,
+  convertToCastString:convertToCastString,
+  convertToCastsInfo:convertToCastsInfo,
+  http: http
 }
