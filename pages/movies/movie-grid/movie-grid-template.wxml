@@ -4,7 +4,7 @@
 <template name="movieGridTemplate">
   <view class="grid-container">
    
-    <block wx:for="{{movies}}" wx:for-item="movie">
+    <block wx:for="{{movies}}" wx:key="movies" wx:for-item="movie">
       <view class="single-view-container">
         <template is="movieTemplate" data="{{...movie}}" />
       </view>

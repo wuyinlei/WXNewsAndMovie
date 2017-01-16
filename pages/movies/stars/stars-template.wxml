@@ -1,7 +1,7 @@
 <template name="starsTemplate">
   <view class="stars-container">
     <view class="stars">
-    <block wx:for="{{stars}}" wx:for-item="i">
+    <block wx:for="{{stars}}" wx:key="stars" wx:for-item="i">
      <image wx:if="{{i}}" src="/images/icon/star.png"></image>
      <image wx:else src="/images/icon/none-star.png"></image>
 

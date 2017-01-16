@@ -34,8 +34,9 @@ Page({
      */
     onMovieTap: function (event) {
         var movieId = event.currentTarget.dataset.movieid;  //这里注意  如果是直接拼接完成的单词  那么所有的都是小写
+        var movieTitle = event.currentTarget.dataset.movietitle;
         wx.navigateTo({
-            url: 'movie-detail/movie-detail?id=' + movieId,
+            url: 'movie-detail/movie-detail?id=' + movieId+"&title="+movieTitle,
 
         })
     },

@@ -42,7 +42,16 @@ Page({
     wx.showNavigationBarLoading();
   },
 
-  
+    /**
+     * movie单独界面
+     */
+    onMovieTap: function (event) {
+        var movieId = event.currentTarget.dataset.movieid;  //这里注意  如果是直接拼接完成的单词  那么所有的都是小写
+        wx.navigateTo({
+            url: '../movie-detail/movie-detail?id=' + movieId,
+
+        })
+    },
 
   proccessDoubanData: function (data) {
     // console.log(data);
